@@ -58,6 +58,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Adopt.aspx" />
+    <Content Include="Adopt_Detail.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Main.Master" />
     <Content Include="css\bootstrap-grid.css.map" />
     <Content Include="css\bootstrap-grid.min.css.map" />
@@ -120,6 +123,27 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adopt.aspx.cs">
+      <DependentUpon>Adopt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Adopt.aspx.designer.cs">
+      <DependentUpon>Adopt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Adopt_Detail.aspx.cs">
+      <DependentUpon>Adopt_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Adopt_Detail.aspx.designer.cs">
+      <DependentUpon>Adopt_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

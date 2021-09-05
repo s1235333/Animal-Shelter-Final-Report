@@ -44,9 +44,9 @@ namespace WebApplication1
                     Sqldr.Close();
 
                     TextBox1.Text = dt.Rows[0]["PET_TYPE"].ToString();
-                    TextBox2.Text = dt.Rows[0]["PET_VARIETY"].ToString();
+                    //TextBox2.Text = dt.Rows[0]["PET_VARIETY"].ToString();
                     TextBox3.Text = dt.Rows[0]["PET_SEX"].ToString();
-                    TextBox4.Text = dt.Rows[0]["PET_WEIGHT"].ToString();
+                    //TextBox4.Text = dt.Rows[0]["PET_WEIGHT"].ToString();
                     TextBox5.Text = dt.Rows[0]["PET_COLOR"].ToString();
                     TextBox6.Text = dt.Rows[0]["PET_OLD"].ToString();
                     //TextBox7.Text = "";
@@ -64,9 +64,9 @@ namespace WebApplication1
         protected void Button1_Click(object sender, EventArgs e)
         {
             TextBox1.ReadOnly = false;
-            TextBox2.ReadOnly = false;
+            //TextBox2.ReadOnly = false;
             TextBox3.ReadOnly = false;
-            TextBox4.ReadOnly = false;
+            //TextBox4.ReadOnly = false;
             TextBox5.ReadOnly = false;
             TextBox6.ReadOnly = false;
             //TextBox7.ReadOnly = false;
@@ -85,9 +85,9 @@ namespace WebApplication1
         private void SetControl_ADD()
         {
             TextBox1.Text = "";
-            TextBox2.Text = "";
+            //TextBox2.Text = "";
             TextBox3.Text = "";
-            TextBox4.Text = "";
+            //TextBox4.Text = "";
             TextBox5.Text = "";
             TextBox6.Text = "";
             //TextBox7.Text = "";
@@ -106,9 +106,9 @@ namespace WebApplication1
         private void SetControl_Edit()
         {
             TextBox1.ReadOnly = true;
-            TextBox2.ReadOnly = true;
+            //TextBox2.ReadOnly = true;
             TextBox3.ReadOnly = true;
-            TextBox4.ReadOnly = true;
+            //TextBox4.ReadOnly = true;
             TextBox5.ReadOnly = true;
             TextBox6.ReadOnly = true;
             //TextBox7.ReadOnly = true;
@@ -128,16 +128,34 @@ namespace WebApplication1
         {
             if (sType == "A")
             {
-                string strIns = @"Insert into PET_SIAZE(PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING,CREATE_DATE) values(@PET_TYPE, @PET_VARIETY, @PET_SEX, @PET_WEIGHT,@PET_COLOR,@PET_OLD,@PET_NUM,@ENTER_DATE,@PERSONALITY,@LIGATION,@VACCINE,@DEWORMING,getdate())";
+                string strIns = @"Insert into PET_SIAZE(PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING, LEAVE_DATE,LEAVE_DATE,IS_ADOPT,ADOPT,CREATE_DATE) values(@PET_TYPE, @PET_VARIETY, @PET_SEX, @PET_WEIGHT,@PET_COLOR,@PET_OLD,@PET_NUM,@ENTER_DATE,@PERSONALITY,@LIGATION,@VACCINE,@DEWORMING,@LEAVE_DATE,@LEAVE_DATE,@IS_ADOPT,@ADOPT,getdate())";
                 SqlConnection sqlconn = new SqlConnection();
                 SqlCommand sqlCmd = new SqlCommand(strIns, sqlconn);
                 sqlconn.ConnectionString = strCon;
                 sqlconn.Open();
+                int iType = 0;
+                int iSex = 0;
+                int iAdopt = 0;
 
-                sqlCmd.Parameters.AddWithValue("@PET_TYPE", TextBox1.Text);
-                sqlCmd.Parameters.AddWithValue("@PET_VARIETY", TextBox2.Text);
-                sqlCmd.Parameters.AddWithValue("@PET_SEX", TextBox3.Text);
-                sqlCmd.Parameters.AddWithValue("@PET_WEIGHT", TextBox4.Text);
+                if (RadioButton4.Checked == true)
+                {
+                    iType = 1;
+                }
+
+                if (RadioButton6.Checked == true)
+                {
+                    iSex = 1;
+                }
+
+                if (RadioButton2.Checked == true)
+                {
+                    iAdopt = 1;
+                }
+
+                sqlCmd.Parameters.AddWithValue("@PET_VARIETY", TextBox1.Text);
+                sqlCmd.Parameters.AddWithValue("@PET_TYPE", iType);
+                sqlCmd.Parameters.AddWithValue("@PET_SEX", iSex);
+                sqlCmd.Parameters.AddWithValue("@PET_WEIGHT", TextBox3.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_COLOR", TextBox5.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_OLD", TextBox6.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_NUM", TextBox8.Text);
@@ -146,7 +164,10 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@LIGATION", TextBox11.Text);
                 sqlCmd.Parameters.AddWithValue("@VACCINE", TextBox12.Text);
                 sqlCmd.Parameters.AddWithValue("@DEWORMING", TextBox13.Text);
-                
+                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", DateTime.Now.ToString());
+                sqlCmd.Parameters.AddWithValue("@IS_ADOPT", iAdopt);
+                sqlCmd.Parameters.AddWithValue("@ADOPT", TextBox14.Text);
+
 
                 sqlCmd.ExecuteNonQuery();
                 sqlCmd.Cancel();
@@ -157,16 +178,35 @@ namespace WebApplication1
             }
             else
             {
-                string strUp = @"Update PET_SIAZE SET PET_TYPE = @PET_TYPE, PET_VARIETY = @PET_VARIETY, PET_SEX = @PET_SEX, PET_WEIGHT = @PET_WEIGHT, PET_COLOR = @PET_COLOR, PET_OLD = @PET_OLD, PET_NUM = @PET_NUM, ENTER_DATE = @ENTER_DATE, PERSONALITY = @PERSONALITY, LIGATION = @LIGATION, VACCINE = @VACCINE, DEWORMING = @DEWORMING where ID = @ID";
+                string strUp = @"Update PET_SIAZE SET PET_TYPE = @PET_TYPE, PET_VARIETY = @PET_VARIETY, PET_SEX = @PET_SEX, PET_WEIGHT = @PET_WEIGHT, PET_COLOR = @PET_COLOR, PET_OLD = @PET_OLD, PET_NUM = @PET_NUM, ENTER_DATE = @ENTER_DATE, PERSONALITY = @PERSONALITY, LIGATION = @LIGATION, VACCINE = @VACCINE, DEWORMING = @DEWORMING, LEAVE_DATE = @LEAVE_DATE, IS_ADOPT = @IS_ADOPT, ADOPT = @ADOPT where ID = @ID";
                 SqlConnection sqlconn = new SqlConnection();
                 SqlCommand sqlCmd = new SqlCommand(strUp, sqlconn);
                 sqlconn.ConnectionString = strCon;
                 sqlconn.Open();
 
-                sqlCmd.Parameters.AddWithValue("@PET_TYPE", TextBox1.Text);
-                sqlCmd.Parameters.AddWithValue("@PET_VARIETY", TextBox2.Text);
-                sqlCmd.Parameters.AddWithValue("@PET_SEX", TextBox3.Text);
-                sqlCmd.Parameters.AddWithValue("@PET_WEIGHT", TextBox4.Text);
+                int iType = 0;
+                int iSex = 0;
+                int iAdopt = 0;
+
+                if (RadioButton4.Checked == true)
+                {
+                    iType = 1;
+                }
+
+                if (RadioButton6.Checked == true)
+                {
+                    iSex = 1;
+                }
+
+                if (RadioButton2.Checked == true)
+                {
+                    iAdopt = 1;
+                }
+
+                sqlCmd.Parameters.AddWithValue("@PET_VARIETY", TextBox1.Text);
+                sqlCmd.Parameters.AddWithValue("@PET_TYPE", iType);
+                sqlCmd.Parameters.AddWithValue("@PET_SEX", iSex);
+                sqlCmd.Parameters.AddWithValue("@PET_WEIGHT", TextBox3.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_COLOR", TextBox5.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_OLD", TextBox6.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_NUM", TextBox8.Text);
@@ -175,6 +215,9 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@LIGATION", TextBox11.Text);
                 sqlCmd.Parameters.AddWithValue("@VACCINE", TextBox12.Text);
                 sqlCmd.Parameters.AddWithValue("@DEWORMING", TextBox13.Text);
+                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", DateTime.Now.ToString());
+                sqlCmd.Parameters.AddWithValue("@IS_ADOPT", iAdopt);
+                sqlCmd.Parameters.AddWithValue("@ADOPT", TextBox14.Text);
                 sqlCmd.Parameters.AddWithValue("@ID", sID);
 
                 sqlCmd.ExecuteNonQuery();
@@ -202,6 +245,61 @@ namespace WebApplication1
             sqlconn.Dispose();
 
             Server.Transfer("Pet.aspx");
+        }
+
+        protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            Adopt.Visible = false;
+            if(RadioButton1.Checked == true)
+            {
+                RadioButton2.Checked = false;
+            }
+        }
+
+        protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            Adopt.Visible = true;
+            if (RadioButton2.Checked == true)
+            {
+                RadioButton1.Checked = false;
+            }
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Pet.aspx");
+        }
+
+        protected void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButton3.Checked == true)
+            {
+                RadioButton4.Checked = false;
+            }
+        }
+
+        protected void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButton4.Checked == true)
+            {
+                RadioButton3.Checked = false;
+            }
+        }
+
+        protected void RadioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButton5.Checked == true)
+            {
+                RadioButton6.Checked = false;
+            }
+        }
+
+        protected void RadioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButton6.Checked == true)
+            {
+                RadioButton5.Checked = false;
+            }
         }
     }
 }

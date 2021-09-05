@@ -1,20 +1,20 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Pet.aspx.cs" Inherits="WebApplication1.Pet" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Adopt.aspx.cs" Inherits="WebApplication1.Adopt" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <%@ Import namespace="System.Data.SqlClient"%>
 <%@ Import namespace="System.Data"%>
 <%@ Import namespace="System.Configuration"%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div>
         <div class="row">
-            <a href="Pet_Detail.aspx?Type=A">新增</a>
+            <a href="Adopt_Detail.aspx?Type=A">新增</a>
         </div>
         <div class="row">
 
-                <%
+            <%
+                 
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
-                    string sql = "Select * From PET_SIAZE";
+                    string sql = "Select * From ADOPTERS";
                     DataTable dt = new DataTable();
                     SqlConnection sqlconn = new SqlConnection();
                     SqlCommand sqlCmd = new SqlCommand(sql, sqlconn);
@@ -31,40 +31,26 @@
                     {
                         for(int i = 0; i < dt.Rows.Count; i++)
                         {
-                            string sType = dt.Rows[i]["PET_TYPE"].ToString();
-                            string sPET_VARIETY = dt.Rows[i]["PET_VARIETY"].ToString();
-                            string sSEX = dt.Rows[i]["PET_SEX"].ToString();
+                            string sName = dt.Rows[i]["ADOPTERS_NAME"].ToString();
+                            string sMail = dt.Rows[i]["ADOPTERS_MAIL"].ToString();
+                            string sTel = dt.Rows[i]["ADOPTERS_TEL"].ToString();
                             string sID = dt.Rows[i]["ID"].ToString();
-                            if(sType == "0")
-                            {
-                                sType = "狗";
-                            }
-                            else
-                            {
-                                sType = "貓";
-                            }
 
-                            if(sSEX == "0")
-                            {
-                                sType = "公";
-                            }
-                            else
-                            {
-                                sType = "母";
-                            }
-
-                            string s = "Pet_Detail.aspx?ID=" + sID + "&Type=E";
-                           
+                            //Label1.Text = "姓名：" + sName;
+                            //Label1.Text = "EMAIL：" + sMail;
+                            //Label1.Text = "電話：" + sTel;
+                            string s = "Adopt_Detail.aspx?ID=" + sID + "&Type=E";
+                            
                             string sHtml = "<div style='width:230px;'>";
                             sHtml += "<div style='width:160px; margin:auto auto;'>";
                             sHtml += "<a href='" + s + "'>";
-                            sHtml += "<img src='Image/02.jpg' />";
+                            sHtml += "<img src='Image/04.jpg' />";
                             sHtml += "</a>";
                             sHtml += "</div>";
                             sHtml += "<div>";
-                            sHtml += "<div><lable>類別：" + sType + "</lable></div>";
-                            sHtml += "<div><lable>品種：" + sPET_VARIETY + "</lable></div>";
-                            sHtml += "<div><lable>性別：" + sSEX + "</lable></div>";
+                            sHtml += "<div><lable>姓名：" + sName + "</lable></div>";
+                            sHtml += "<div><lable>EMAIL：" + sMail + "</lable></div>";
+                            sHtml += "<div><lable>電話：" + sTel + "</lable></div>";
                             sHtml += "</div>";
                             sHtml += "</div>";
 
@@ -72,7 +58,6 @@
                         }
                     }
                 %>
-
             
         </div>
     </div>

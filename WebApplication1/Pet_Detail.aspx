@@ -16,7 +16,7 @@
                 <div style="margin:auto auto; width:100px; float:left;"><asp:Button ID="Button2" runat="server" Text="刪除" OnClick="Button2_Click" /></div>
             </div>
             <div style="padding-left:160px; margin-top:30px;">
-                <asp:Button ID="Button3" runat="server" Text="返回列表頁" />
+                <asp:Button ID="Button3" runat="server" Text="返回列表頁" OnClick="Button3_Click" />
             </div>
         </div>
         <div style="width:510px; float:left; margin:auto 20px;">
@@ -28,7 +28,10 @@
                     </tr>
                     <tr>
                         <td>類別：</td>
-                        <td><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox></td>
+                        <td>
+                            <asp:RadioButton ID="RadioButton3" runat="server" Text="狗" OnCheckedChanged="RadioButton3_CheckedChanged" />
+                            <asp:RadioButton ID="RadioButton4" runat="server" Text="貓" OnCheckedChanged="RadioButton4_CheckedChanged" />
+                        </td>
                         
                     </tr>
                     <tr>
@@ -38,7 +41,10 @@
                     </tr>
                     <tr>
                         <td>性別：</td>
-                        <td><asp:TextBox ID="TextBox4" runat="server"></asp:TextBox></td>
+                        <td>
+                            <asp:RadioButton ID="RadioButton5" runat="server" OnCheckedChanged="RadioButton5_CheckedChanged" Text="公" />
+                            <asp:RadioButton ID="RadioButton6" runat="server" OnCheckedChanged="RadioButton6_CheckedChanged" Text="母" />
+                        </td>
                         
                     </tr>
                     <tr>
@@ -68,7 +74,7 @@
                         <td><asp:TextBox ID="TextBox10" runat="server"></asp:TextBox></td>
                         
                     </tr>
-                    <tr>
+                    <tr runat="server" id="Adopt">
                         <td>結扎與否：</td>
                         <td><asp:TextBox ID="TextBox11" runat="server"></asp:TextBox></td>
                         
@@ -80,6 +86,18 @@
                     <tr>
                         <td>驅蟲與否：</td>
                         <td><asp:TextBox ID="TextBox13" runat="server"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td>領養與否：</td>
+                        <td>
+                            <asp:RadioButton ID="RadioButton1" runat="server" Text="是" OnCheckedChanged="RadioButton1_CheckedChanged" />
+                            <asp:RadioButton ID="RadioButton2" runat="server" Text="否" OnCheckedChanged="RadioButton2_CheckedChanged" />
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>領養人：</td>
+                        <td><asp:TextBox ID="TextBox14" runat="server"></asp:TextBox></td>
                     </tr>
                 </table>
             </div>

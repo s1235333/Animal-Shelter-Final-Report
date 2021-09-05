@@ -78,13 +78,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
 
         /// <summary>
-        /// TextBox2 控制項。
+        /// RadioButton3 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.RadioButton RadioButton3;
+
+        /// <summary>
+        /// RadioButton4 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RadioButton4;
 
         /// <summary>
         /// TextBox3 控制項。
@@ -96,13 +105,22 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox TextBox3;
 
         /// <summary>
-        /// TextBox4 控制項。
+        /// RadioButton5 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.RadioButton RadioButton5;
+
+        /// <summary>
+        /// RadioButton6 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RadioButton6;
 
         /// <summary>
         /// TextBox5 控制項。
@@ -150,6 +168,15 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox TextBox10;
 
         /// <summary>
+        /// Adopt 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Adopt;
+
+        /// <summary>
         /// TextBox11 控制項。
         /// </summary>
         /// <remarks>
@@ -175,5 +202,32 @@ namespace WebApplication1
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox13;
+
+        /// <summary>
+        /// RadioButton1 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
+
+        /// <summary>
+        /// RadioButton2 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
+
+        /// <summary>
+        /// TextBox14 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox14;
     }
 }
