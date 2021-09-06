@@ -20,7 +20,7 @@
             <div style="padding-left:220px; padding-top:63px;">
                 <div>
                     <asp:TextBox ID="TextBox2" runat="server" CssClass="col-lg-3"></asp:TextBox>
-                    <asp:Button ID="Button1" runat="server" Text="LOGIN" CssClass="btn-group" OnClick="Button1_Click"/>
+                    <asp:Button ID="Button1" runat="server" Text="LOGIN" CssClass="btn btn-primary" OnClick="Button1_Click"/>
                 </div>
             </div>
         </div>

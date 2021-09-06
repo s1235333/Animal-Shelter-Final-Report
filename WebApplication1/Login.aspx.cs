@@ -20,7 +20,7 @@ namespace WebApplication1
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string sql = "Select * From USER_ACC where ACCOUNT = " + TextBox1.Text;
+            string sql = "Select * From USER_ACC where ACCOUNT = '" + TextBox1.Text + "'";
             DataTable dt = new DataTable();
 
             SqlConnection sqlconn = new SqlConnection();
@@ -39,7 +39,7 @@ namespace WebApplication1
             }
             else
             {
-                Server.Transfer("Index.aspx");
+                Server.Transfer("Default.aspx");
             }
         }
     }

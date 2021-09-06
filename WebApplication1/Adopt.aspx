@@ -5,12 +5,12 @@
 <%@ Import namespace="System.Data"%>
 <%@ Import namespace="System.Configuration"%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <div class="row">
-            <a href="Adopt_Detail.aspx?Type=A">新增</a>
-        </div>
-        <div class="row">
-
+    <div class="container" style="height:100vh; background-color:#f8f0cc;">
+       
+        <div style="margin:auto auto; width:1125px; ">
+            <div class="row" style="width:800px;">
+                <asp:Button ID="Button1" runat="server" Text="新增" CssClass="btn btn-primary" OnClick="Button1_Click"/>
+            </div>
             <%
                  
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
@@ -41,7 +41,7 @@
                             //Label1.Text = "電話：" + sTel;
                             string s = "Adopt_Detail.aspx?ID=" + sID + "&Type=E";
                             
-                            string sHtml = "<div style='width:230px;'>";
+                            string sHtml = "<div style='width:280px;border:solid 1px black; float:left; margin:20px 0px 0px 60px;'>";
                             sHtml += "<div style='width:160px; margin:auto auto;'>";
                             sHtml += "<a href='" + s + "'>";
                             sHtml += "<img src='Image/04.jpg' />";

@@ -6,12 +6,12 @@
 <%@ Import namespace="System.Configuration"%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div>
-        <div class="row">
-            <a href="Pet_Detail.aspx?Type=A">新增</a>
-        </div>
-        <div class="row">
-
+    <div class="container" style="height:100vh; background-color:#f8f0cc;">
+        
+        <div style="margin:auto auto; width:1125px;">
+                <div class="row" style="width:800px;">
+                    <a href="Pet_Detail.aspx?Type=A">新增</a>
+                </div>
                 <%
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
                     string sql = "Select * From PET_SIAZE";
@@ -55,7 +55,7 @@
 
                             string s = "Pet_Detail.aspx?ID=" + sID + "&Type=E";
                            
-                            string sHtml = "<div style='width:230px;'>";
+                            string sHtml = "<div style='width:280px;border:solid 1px black; float:left; margin:20px 0px 0px 60px;'>";
                             sHtml += "<div style='width:160px; margin:auto auto;'>";
                             sHtml += "<a href='" + s + "'>";
                             sHtml += "<img src='Image/02.jpg' />";

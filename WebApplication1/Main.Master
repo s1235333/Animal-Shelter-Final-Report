@@ -6,12 +6,13 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.css" />
     </asp:ContentPlaceHolder>
+   
 </head>
-<body>
+<body style="margin:0px;">
     <form id="form1" runat="server" style="background-color:#f8f0cc;">
 
         <%--<div style="background-color:#f8f0cc;">
