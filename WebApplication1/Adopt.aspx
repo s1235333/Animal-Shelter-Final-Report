@@ -35,6 +35,7 @@
                             string sMail = dt.Rows[i]["ADOPTERS_MAIL"].ToString();
                             string sTel = dt.Rows[i]["ADOPTERS_TEL"].ToString();
                             string sID = dt.Rows[i]["ID"].ToString();
+                            string sIMG = dt.Rows[i]["ADOPTERS_IMG"].ToString();
 
                             //Label1.Text = "姓名：" + sName;
                             //Label1.Text = "EMAIL：" + sMail;
@@ -44,7 +45,7 @@
                             string sHtml = "<div style='width:280px;border:solid 1px black; float:left; margin:20px 0px 0px 60px;'>";
                             sHtml += "<div style='width:160px; margin:auto auto;'>";
                             sHtml += "<a href='" + s + "'>";
-                            sHtml += "<img src='Image/04.jpg' />";
+                            sHtml += "<img src='Image/" + sIMG + "' />";
                             sHtml += "</a>";
                             sHtml += "</div>";
                             sHtml += "<div>";

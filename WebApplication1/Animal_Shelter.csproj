@@ -213,6 +213,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Image\" />
+    <Folder Include="Pic2\" />
+    <Folder Include="Pic\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

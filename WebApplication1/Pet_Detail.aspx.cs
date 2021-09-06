@@ -162,7 +162,7 @@ namespace WebApplication1
         {
             if (sType == "A")
             {
-                string strIns = @"Insert into PET_SIAZE(PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING, LEAVE_DATE,IS_ADOPT,ADOPT,CREATE_DATE) values(@PET_TYPE, @PET_VARIETY, @PET_SEX, @PET_WEIGHT,@PET_COLOR,@PET_OLD,@PET_NUM,@ENTER_DATE,@PERSONALITY,@LIGATION,@VACCINE,@DEWORMING, @LEAVE_DATE,@IS_ADOPT,@ADOPT,getdate())";
+                string strIns = @"Insert into PET_SIAZE(PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING, LEAVE_DATE,IS_ADOPT,ADOPT,PET_IMG,CREATE_DATE) values(@PET_TYPE, @PET_VARIETY, @PET_SEX, @PET_WEIGHT,@PET_COLOR,@PET_OLD,@PET_NUM,@ENTER_DATE,@PERSONALITY,@LIGATION,@VACCINE,@DEWORMING, @LEAVE_DATE,@IS_ADOPT,@ADOPT,@PET_IMG,getdate())";
                 SqlConnection sqlconn = new SqlConnection();
                 SqlCommand sqlCmd = new SqlCommand(strIns, sqlconn);
                 sqlconn.ConnectionString = strCon;
@@ -201,6 +201,7 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", TextBox2.Text);
                 sqlCmd.Parameters.AddWithValue("@IS_ADOPT", iAdopt);
                 sqlCmd.Parameters.AddWithValue("@ADOPT", TextBox14.Text);
+                sqlCmd.Parameters.AddWithValue("@PET_IMG", HiddenField1.Value);
 
                 //PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING, LEAVE_DATE,IS_ADOPT,ADOPT,CREATE_DATE
                 sqlCmd.ExecuteNonQuery();
@@ -212,7 +213,7 @@ namespace WebApplication1
             }
             else
             {
-                string strUp = @"Update PET_SIAZE SET PET_TYPE = @PET_TYPE, PET_VARIETY = @PET_VARIETY, PET_SEX = @PET_SEX, PET_WEIGHT = @PET_WEIGHT, PET_COLOR = @PET_COLOR, PET_OLD = @PET_OLD, PET_NUM = @PET_NUM, ENTER_DATE = @ENTER_DATE, PERSONALITY = @PERSONALITY, LIGATION = @LIGATION, VACCINE = @VACCINE, DEWORMING = @DEWORMING, LEAVE_DATE = @LEAVE_DATE, IS_ADOPT = @IS_ADOPT, ADOPT = @ADOPT where ID = @ID";
+                string strUp = @"Update PET_SIAZE SET PET_TYPE = @PET_TYPE, PET_VARIETY = @PET_VARIETY, PET_SEX = @PET_SEX, PET_WEIGHT = @PET_WEIGHT, PET_COLOR = @PET_COLOR, PET_OLD = @PET_OLD, PET_NUM = @PET_NUM, ENTER_DATE = @ENTER_DATE, PERSONALITY = @PERSONALITY, LIGATION = @LIGATION, VACCINE = @VACCINE, DEWORMING = @DEWORMING, LEAVE_DATE = @LEAVE_DATE, IS_ADOPT = @IS_ADOPT, ADOPT = @ADOPT, PET_IMG = @PET_IMG where ID = @ID";
                 SqlConnection sqlconn = new SqlConnection();
                 SqlCommand sqlCmd = new SqlCommand(strUp, sqlconn);
                 sqlconn.ConnectionString = strCon;
@@ -252,6 +253,7 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", TextBox2.Text);
                 sqlCmd.Parameters.AddWithValue("@IS_ADOPT", iAdopt);
                 sqlCmd.Parameters.AddWithValue("@ADOPT", TextBox14.Text);
+                sqlCmd.Parameters.AddWithValue("@PET_IMG", HiddenField1.Value);
                 sqlCmd.Parameters.AddWithValue("@ID", sID);
 
                 sqlCmd.ExecuteNonQuery();
@@ -335,6 +337,34 @@ namespace WebApplication1
             if (RadioButton6.Checked == true)
             {
                 RadioButton5.Checked = false;
+            }
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (FileUpload1.PostedFile.FileName == "")
+                //if (FileUpload1.FileName == "") 
+                //if (!FileUpload1.HasFile)  //獲取一個值，該值指示 System.Web.UI.WebControls.FileUpload 控制元件是否包含檔案。包含檔案，則為 true；否則為 false。 
+                //{
+                //    this.Upload_info.Text = "請選擇上傳檔案！";
+                //}
+                //else
+                //{
+                //string filepath = FileUpload1.PostedFile.FileName; //得到的是檔案的完整路徑,包括檔名，如：C:\Documents and Settings\Administrator\My Documents\My Pictures\20022775_m.jpg 
+                //string filepath = FileUpload1.FileName;    //得到上傳的檔名20022775_m.jpg 
+                string filename = FileUpload1.PostedFile.FileName;//20022775_m.jpg 
+                string serverpath = Server.MapPath("~/Pic2/") + filename;//取得檔案在伺服器上儲存的位置C:\Inetpub\wwwroot\WebSite1\images\20022775_m.jpg 
+                FileUpload1.PostedFile.SaveAs(serverpath);//將上傳的檔案另存為 
+                HiddenField1.Value = filename;
+                Image1.ImageUrl = "Pic2/" + filename;
+                //this.Upload_info.Text = "上傳成功！";
+                //}
+            }
+            catch (Exception ex)
+            {
+                //this.Upload_info.Text = "上傳發生錯誤！原因是："   ex.ToString();
             }
         }
     }

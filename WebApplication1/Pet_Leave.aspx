@@ -31,6 +31,7 @@
                             string sPET_VARIETY = dt.Rows[i]["PET_VARIETY"].ToString();
                             string sLeaveDate = dt.Rows[i]["LEAVE_DATE"].ToString();
                             string sID = dt.Rows[i]["ID"].ToString();
+                            string sIMG = dt.Rows[i]["PET_IMG"].ToString();
                             if(sType == "0")
                             {
                                 sType = "狗";
@@ -45,7 +46,7 @@
                             string sHtml = "<div style='width:280px;border:solid 1px black; float:left; margin:20px 0px 0px 60px;'>";
                             sHtml += "<div style='width:160px; margin:auto auto;'>";
                             sHtml += "<a href='" + s + "'>";
-                            sHtml += "<img src='Image/02.jpg' />";
+                            sHtml += "<img src='Pic2/" + sIMG + "' />";
                             sHtml += "</a>";
                             sHtml += "</div>";
                             sHtml += "<div>";

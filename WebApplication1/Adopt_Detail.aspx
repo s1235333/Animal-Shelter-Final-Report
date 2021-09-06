@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:HiddenField ID="HiddenField1" runat="server" />
     <div class="container" style="background-color:#f8f0cc; height:100vh;" >
         <div style="width:800px; height:auto; float:left; margin:auto 20%;">
             <div style="width:450px; float:left;">
@@ -31,6 +32,13 @@
                         <tr>
                             <td>電話</td>
                             <td><asp:TextBox ID="TextBox5" runat="server"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td>上傳圖片</td>
+                            <td>
+                                <asp:FileUpload ID="FileUpload1" runat="server" />
+                                <asp:Button ID="Button4" runat="server" Text="上傳" CssClass="btn btn-primary" OnClick="Button4_Click"/>
+                            </td>
                         </tr>
                     </table>
                 </div>

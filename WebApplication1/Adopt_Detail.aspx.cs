@@ -139,7 +139,7 @@ namespace WebApplication1
         {
             if (sType == "A")
             {
-                string strIns = @"Insert into ADOPTERS(ADOPTERS_NAME, ADOPTERS_SEX, ADOPTERS_TEL, ADOPTERS_MAIL, ADOPTERS_ADDR, ADOPTERS_HOME, ADOPTERS_EXP, ADOPTERS_INCOM, CREATE_DATE) values(@ADOPTERS_NAME, @ADOPTERS_SEX, @ADOPTERS_TEL, @ADOPTERS_MAIL, @ADOPTERS_ADDR, @ADOPTERS_HOME, @ADOPTERS_EXP, @ADOPTERS_INCOM, getdate())";
+                string strIns = @"Insert into ADOPTERS(ADOPTERS_NAME, ADOPTERS_SEX, ADOPTERS_TEL, ADOPTERS_MAIL, ADOPTERS_ADDR, ADOPTERS_HOME, ADOPTERS_EXP, ADOPTERS_INCOM, ADOPTERS_IMG CREATE_DATE) values(@ADOPTERS_NAME, @ADOPTERS_SEX, @ADOPTERS_TEL, @ADOPTERS_MAIL, @ADOPTERS_ADDR, @ADOPTERS_HOME, @ADOPTERS_EXP, @ADOPTERS_INCOM, @ADOPTERS_IMG, getdate())";
                 SqlConnection sqlconn = new SqlConnection();
                 SqlCommand sqlCmd = new SqlCommand(strIns, sqlconn);
                 sqlconn.ConnectionString = strCon;
@@ -165,6 +165,7 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@ADOPTERS_HOME", TextBox6.Text);
                 sqlCmd.Parameters.AddWithValue("@ADOPTERS_EXP", iEXP);
                 sqlCmd.Parameters.AddWithValue("@ADOPTERS_INCOM", TextBox8.Text);
+                sqlCmd.Parameters.AddWithValue("@ADOPTERS_IMG", HiddenField1.Value);
 
 
 
@@ -177,7 +178,7 @@ namespace WebApplication1
             }
             else
             {
-                string strUp = @"Update ADOPTERS SET ADOPTERS_TEL = @ADOPTERS_TEL, ADOPTERS_MAIL = @ADOPTERS_MAIL, ADOPTERS_ADDR = @ADOPTERS_ADDR, ADOPTERS_HOME = @ADOPTERS_HOME, ADOPTERS_EXP = @ADOPTERS_EXP, ADOPTERS_INCOM = @ADOPTERS_INCOM where ID = @ID";
+                string strUp = @"Update ADOPTERS SET ADOPTERS_TEL = @ADOPTERS_TEL, ADOPTERS_MAIL = @ADOPTERS_MAIL, ADOPTERS_ADDR = @ADOPTERS_ADDR, ADOPTERS_HOME = @ADOPTERS_HOME, ADOPTERS_EXP = @ADOPTERS_EXP, ADOPTERS_INCOM = @ADOPTERS_INCOM, ADOPTERS_IMG = @ADOPTERS_IMG where ID = @ID";
                 SqlConnection sqlconn = new SqlConnection();
                 SqlCommand sqlCmd = new SqlCommand(strUp, sqlconn);
                 sqlconn.ConnectionString = strCon;
@@ -195,6 +196,7 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@ADOPTERS_HOME", TextBox6.Text);
                 sqlCmd.Parameters.AddWithValue("@ADOPTERS_EXP", iEXP);
                 sqlCmd.Parameters.AddWithValue("@ADOPTERS_INCOM", TextBox8.Text);
+                sqlCmd.Parameters.AddWithValue("@ADOPTERS_IMG", HiddenField1.Value);
                 sqlCmd.Parameters.AddWithValue("@ID", sID);
 
                 sqlCmd.ExecuteNonQuery();
@@ -236,6 +238,39 @@ namespace WebApplication1
             {
                 RadioButton3.Checked = false;
             }
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (FileUpload1.PostedFile.FileName == "")
+                //if (FileUpload1.FileName == "") 
+                //if (!FileUpload1.HasFile)  //獲取一個值，該值指示 System.Web.UI.WebControls.FileUpload 控制元件是否包含檔案。包含檔案，則為 true；否則為 false。 
+                //{
+                //    this.Upload_info.Text = "請選擇上傳檔案！";
+                //}
+                //else
+                //{
+                //string filepath = FileUpload1.PostedFile.FileName; //得到的是檔案的完整路徑,包括檔名，如：C:\Documents and Settings\Administrator\My Documents\My Pictures\20022775_m.jpg 
+                                                                    //string filepath = FileUpload1.FileName;    //得到上傳的檔名20022775_m.jpg 
+                string filename = FileUpload1.PostedFile.FileName;//20022775_m.jpg 
+                string serverpath = Server.MapPath("~/Pic/") + filename;//取得檔案在伺服器上儲存的位置C:\Inetpub\wwwroot\WebSite1\images\20022775_m.jpg 
+                FileUpload1.PostedFile.SaveAs(serverpath);//將上傳的檔案另存為 
+                HiddenField1.Value = filename;
+                Image1.ImageUrl = "Pic/" + filename;
+                    //this.Upload_info.Text = "上傳成功！";
+                //}
+            }
+            catch (Exception ex)
+            {
+                //this.Upload_info.Text = "上傳發生錯誤！原因是："   ex.ToString();
+            }
+        }
+
+        protected void Button4_Click1(object sender, EventArgs e)
+        {
+
         }
     }
 }

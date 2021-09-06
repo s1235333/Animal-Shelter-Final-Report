@@ -13,6 +13,7 @@
                     <div style="width:100px; float:left;"><asp:Button ID="Button1" runat="server" Text="新增" CssClass="btn btn-primary" OnClick="Button1_Click" /></div>
                     <div style="width:100px; float:left;"><asp:Button ID="Button2" runat="server" Text="已領養" CssClass="btn btn-primary" OnClick="Button2_Click" /></div>
                 </div>
+            
                 <%
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
                     string sql = "Select * From PET_SIAZE where IS_ADOPT = 1";
@@ -36,6 +37,7 @@
                             string sPET_VARIETY = dt.Rows[i]["PET_VARIETY"].ToString();
                             string sSEX = dt.Rows[i]["PET_SEX"].ToString();
                             string sID = dt.Rows[i]["ID"].ToString();
+                            string sIMG = dt.Rows[i]["PET_IMG"].ToString();
                             if(sType == "0")
                             {
                                 sType = "狗";
@@ -59,7 +61,7 @@
                             string sHtml = "<div style='width:280px;border:solid 1px black; float:left; margin:20px 0px 0px 60px;'>";
                             sHtml += "<div style='width:160px; margin:auto auto;'>";
                             sHtml += "<a href='" + s + "'>";
-                            sHtml += "<img src='Image/02.jpg' />";
+                            sHtml += "<img src='Pic2/" + sIMG + "' />";
                             sHtml += "</a>";
                             sHtml += "</div>";
                             sHtml += "<div>";
