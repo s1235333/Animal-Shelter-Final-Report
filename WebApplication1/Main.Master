@@ -25,7 +25,7 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="Pet.aspx">毛小孩管理</a></li>
-                    <li><a class="dropdown-item" href="Adopt.asp">領養者管理</a></li>
+                    <li><a class="dropdown-item" href="Adopt.aspx">領養者管理</a></li>
                     <li><a class="dropdown-item" href="User.aspx">員工管理</a></li>
                   </ul>
                 </div>

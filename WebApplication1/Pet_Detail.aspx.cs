@@ -19,6 +19,8 @@ namespace WebApplication1
         {
             sType = Request.QueryString["Type"];
             sID = Request.QueryString["ID"];
+            Adopt.Visible = false;
+            Adopt2.Visible = false;
 
             if (!IsPostBack)//如果不是用PostBack回來的話
             {
@@ -43,9 +45,13 @@ namespace WebApplication1
                     dt.Load(Sqldr);
                     Sqldr.Close();
 
-                    TextBox1.Text = dt.Rows[0]["PET_TYPE"].ToString();
+                    string sType = dt.Rows[0]["PET_TYPE"].ToString();
+                    string sSex = dt.Rows[0]["PET_SEX"].ToString();
+                    string sAdopt = dt.Rows[0]["IS_ADOPT"].ToString();
+
+                    TextBox1.Text = dt.Rows[0]["PET_VARIETY"].ToString();
                     //TextBox2.Text = dt.Rows[0]["PET_VARIETY"].ToString();
-                    TextBox3.Text = dt.Rows[0]["PET_SEX"].ToString();
+                    TextBox3.Text = dt.Rows[0]["PET_WEIGHT"].ToString();
                     //TextBox4.Text = dt.Rows[0]["PET_WEIGHT"].ToString();
                     TextBox5.Text = dt.Rows[0]["PET_COLOR"].ToString();
                     TextBox6.Text = dt.Rows[0]["PET_OLD"].ToString();
@@ -56,7 +62,35 @@ namespace WebApplication1
                     TextBox11.Text = dt.Rows[0]["LIGATION"].ToString();
                     TextBox12.Text = dt.Rows[0]["VACCINE"].ToString();
                     TextBox13.Text = dt.Rows[0]["DEWORMING"].ToString();
+                    TextBox2.Text = dt.Rows[0]["LEAVE_DATE"].ToString();
+                    TextBox14.Text = dt.Rows[0]["ADOPT"].ToString();
 
+                    if(sType == "0")
+                    {
+                        RadioButton3.Checked = true;
+                    }
+                    else
+                    {
+                        RadioButton4.Checked = true;
+                    }
+
+                    if (sSex == "0")
+                    {
+                        RadioButton5.Checked = true;
+                    }
+                    else
+                    {
+                        RadioButton6.Checked = true;
+                    }
+
+                    if (sAdopt == "0")
+                    {
+                        RadioButton1.Checked = true;
+                    }
+                    else
+                    {
+                        RadioButton2.Checked = true;
+                    }
                 }
             }
         }
@@ -128,7 +162,7 @@ namespace WebApplication1
         {
             if (sType == "A")
             {
-                string strIns = @"Insert into PET_SIAZE(PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING, LEAVE_DATE,LEAVE_DATE,IS_ADOPT,ADOPT,CREATE_DATE) values(@PET_TYPE, @PET_VARIETY, @PET_SEX, @PET_WEIGHT,@PET_COLOR,@PET_OLD,@PET_NUM,@ENTER_DATE,@PERSONALITY,@LIGATION,@VACCINE,@DEWORMING,@LEAVE_DATE,@LEAVE_DATE,@IS_ADOPT,@ADOPT,getdate())";
+                string strIns = @"Insert into PET_SIAZE(PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING, LEAVE_DATE,IS_ADOPT,ADOPT,CREATE_DATE) values(@PET_TYPE, @PET_VARIETY, @PET_SEX, @PET_WEIGHT,@PET_COLOR,@PET_OLD,@PET_NUM,@ENTER_DATE,@PERSONALITY,@LIGATION,@VACCINE,@DEWORMING, @LEAVE_DATE,@IS_ADOPT,@ADOPT,getdate())";
                 SqlConnection sqlconn = new SqlConnection();
                 SqlCommand sqlCmd = new SqlCommand(strIns, sqlconn);
                 sqlconn.ConnectionString = strCon;
@@ -155,7 +189,7 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@PET_VARIETY", TextBox1.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_TYPE", iType);
                 sqlCmd.Parameters.AddWithValue("@PET_SEX", iSex);
-                sqlCmd.Parameters.AddWithValue("@PET_WEIGHT", TextBox3.Text);
+                sqlCmd.Parameters.AddWithValue("@PET_WEIGHT", Convert.ToDecimal(TextBox3.Text));
                 sqlCmd.Parameters.AddWithValue("@PET_COLOR", TextBox5.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_OLD", TextBox6.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_NUM", TextBox8.Text);
@@ -164,11 +198,11 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@LIGATION", TextBox11.Text);
                 sqlCmd.Parameters.AddWithValue("@VACCINE", TextBox12.Text);
                 sqlCmd.Parameters.AddWithValue("@DEWORMING", TextBox13.Text);
-                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", DateTime.Now.ToString());
+                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", TextBox2.Text);
                 sqlCmd.Parameters.AddWithValue("@IS_ADOPT", iAdopt);
                 sqlCmd.Parameters.AddWithValue("@ADOPT", TextBox14.Text);
 
-
+                //PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING, LEAVE_DATE,IS_ADOPT,ADOPT,CREATE_DATE
                 sqlCmd.ExecuteNonQuery();
                 sqlCmd.Cancel();
                 sqlconn.Close();
@@ -215,7 +249,7 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@LIGATION", TextBox11.Text);
                 sqlCmd.Parameters.AddWithValue("@VACCINE", TextBox12.Text);
                 sqlCmd.Parameters.AddWithValue("@DEWORMING", TextBox13.Text);
-                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", DateTime.Now.ToString());
+                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", TextBox2.Text);
                 sqlCmd.Parameters.AddWithValue("@IS_ADOPT", iAdopt);
                 sqlCmd.Parameters.AddWithValue("@ADOPT", TextBox14.Text);
                 sqlCmd.Parameters.AddWithValue("@ID", sID);
@@ -249,7 +283,8 @@ namespace WebApplication1
 
         protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            Adopt.Visible = false;
+            Adopt.Visible = true;
+            Adopt2.Visible = true;
             if(RadioButton1.Checked == true)
             {
                 RadioButton2.Checked = false;
@@ -258,7 +293,8 @@ namespace WebApplication1
 
         protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            Adopt.Visible = true;
+            Adopt.Visible = false;
+            Adopt2.Visible = false;
             if (RadioButton2.Checked == true)
             {
                 RadioButton1.Checked = false;

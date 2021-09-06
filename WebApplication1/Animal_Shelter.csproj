@@ -119,6 +119,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Pet.aspx" />
     <Content Include="Pet_Detail.aspx" />
+    <Content Include="Pet_Leave.aspx" />
     <Content Include="User.aspx" />
     <Content Include="User_Detail.aspx" />
     <Content Include="Web.config" />
@@ -186,6 +187,13 @@
     </Compile>
     <Compile Include="Pet_Detail.aspx.designer.cs">
       <DependentUpon>Pet_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pet_Leave.aspx.cs">
+      <DependentUpon>Pet_Leave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pet_Leave.aspx.designer.cs">
+      <DependentUpon>Pet_Leave.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.aspx.cs">

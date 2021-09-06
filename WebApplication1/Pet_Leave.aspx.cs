@@ -4,12 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace WebApplication1
 {
-    public partial class Pet : System.Web.UI.Page
+    public partial class Pet_Leave : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,12 +16,7 @@ namespace WebApplication1
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Pet_Detail.aspx?Type=A");
-        }
-
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("Pet_Leave.aspx");
+            Server.Transfer("Pet.aspx");
         }
     }
 }
