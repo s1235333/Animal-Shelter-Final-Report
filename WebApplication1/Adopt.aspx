@@ -8,7 +8,7 @@
     <div class="container" style="height:100vh; background-color:#f8f0cc;">
        
         <div style="margin:auto auto; width:1125px; ">
-            <div class="row" style="width:800px;">
+            <div class="row" style="width:80px; margin-left:60px;">
                 <asp:Button ID="Button1" runat="server" Text="新增" CssClass="btn btn-primary" OnClick="Button1_Click"/>
             </div>
             <%

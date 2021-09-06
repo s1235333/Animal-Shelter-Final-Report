@@ -26,6 +26,7 @@
         <div style="width:100px; padding-left:250px; padding-top:25px; float:right;">
             <asp:Button ID="Button1" runat="server" Text="新增" CssClass="btn btn-primary" OnClick="Button1_Click" />
         </div>
+        
     </div>
     
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Animal_HouseConnectionString %>" SelectCommand="SELECT * FROM [USER_ACC]"></asp:SqlDataSource>

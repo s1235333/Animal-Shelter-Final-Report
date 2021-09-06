@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="789.aspx" />
     <Content Include="Adopt.aspx" />
     <Content Include="Adopt_Detail.aspx" />
     <Content Include="Default.aspx" />
@@ -123,6 +124,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="789.aspx.cs">
+      <DependentUpon>789.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="789.aspx.designer.cs">
+      <DependentUpon>789.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Adopt.aspx.cs">
       <DependentUpon>Adopt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

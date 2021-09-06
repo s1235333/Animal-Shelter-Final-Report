@@ -6,7 +6,9 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <%--<script src="js/bootstrap.min.js"></script>--%>
     <link rel="stylesheet" href="css/bootstrap.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -14,10 +16,22 @@
 </head>
 <body style="margin:0px;">
     <form id="form1" runat="server" style="background-color:#f8f0cc;">
+        <div style="background-color:#f8f0cc; height:100px;">
+            <div style="margin:0px 0px 0px 40px; width:100px; padding-top:50px;" id="div01" runat="server">
+                <%--<asp:Label ID="Label1" runat="server" Text="測試測試"></asp:Label>--%>
+                <div class="dropdown">
+                  <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="Image/09.jpg" />
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="Pet.aspx">毛小孩管理</a></li>
+                    <li><a class="dropdown-item" href="Adopt.asp">領養者管理</a></li>
+                    <li><a class="dropdown-item" href="User.aspx">員工管理</a></li>
+                  </ul>
+                </div>
 
-        <%--<div style="background-color:#f8f0cc;">
-            <asp:Label ID="Label1" runat="server" Text="測試測試"></asp:Label>
-        </div>--%>
+            </div>
+        </div>
         <div style="background-color:#f8f0cc;">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
