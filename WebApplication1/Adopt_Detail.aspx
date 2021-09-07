@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <div class="container" style="background-color:#f8f0cc; height:100vh;" >
-        <div style="width:800px; height:auto; float:left; margin:auto 20%;">
+        <div style="width:1120px; height:auto; float:left; margin:auto 20%;">
             <div style="width:450px; float:left;">
                 <div>
                     <table>
@@ -62,9 +62,9 @@
                     </table>
                 </div>
             </div>
-            <div style="width:300px; float:left; margin:auto 20px;">
+            <div style="width:400px; float:left; margin:auto 20px;">
                 <div>
-                    <div style="margin:auto auto; width:200px;"><asp:Image ID="Image1" runat="server" ImageUrl="Image/04.jpg" Width="160px" Height="120" /></div>
+                    <div style="margin:auto 60px; width:330px;"><asp:Image ID="Image1" runat="server" ImageUrl="Image/04.jpg" Width="240px" height="180px"/></div>
                 </div>
                 <div style="width:auto; height:auto; margin-top:">
                     <div style="margin:auto auto; width:230px;">

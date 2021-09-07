@@ -8,13 +8,24 @@
     <div class="container" style="height:100vh; background-color:#f8f0cc;">
        
         <div style="margin:auto auto; width:1125px; ">
-            <div class="row" style="width:80px; margin-left:60px;">
-                <asp:Button ID="Button1" runat="server" Text="新增" CssClass="btn btn-primary" OnClick="Button1_Click"/>
+            <div class="row" style="width:500px; margin-left:60px;">
+                <div style="width:100px; float:left;"><asp:Button ID="Button1" runat="server" Text="新增" CssClass="btn btn-primary" OnClick="Button1_Click"/></div>
+                <div style="width:300px; float:left;"><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><asp:Button ID="Button2" runat="server" Text="查詢" CssClass="btn btn-primary" OnClick="Button2_Click" /></div>
             </div>
             <%
-                 
+                    
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
-                    string sql = "Select * From ADOPTERS";
+                    string sql = "Select * From ADOPTERS where 1 = 1 ";
+
+                    string sWhere = string.Empty;
+                    string sText = Request.QueryString["Text"];
+                    if(!string.IsNullOrWhiteSpace(sText))
+                    {
+                        sWhere += "And (ADOPTERS_NAME like '%" + sText + "%' OR ADOPTERS_ADDR like '%" + sText + "%' OR ADOPTERS_HOME like '%" + sText + "%')";
+                    }
+
+                    sql = sql + sWhere;
+
                     DataTable dt = new DataTable();
                     SqlConnection sqlconn = new SqlConnection();
                     SqlCommand sqlCmd = new SqlCommand(sql, sqlconn);
