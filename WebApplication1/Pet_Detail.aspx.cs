@@ -21,6 +21,13 @@ namespace WebApplication1
             sID = Request.QueryString["ID"];
             Adopt.Visible = false;
             Adopt2.Visible = false;
+            SetDrList();
+
+            if (RadioButton1.Checked == true)
+            {
+                Adopt.Visible = true;
+                Adopt2.Visible = true;
+            }
 
             if (!IsPostBack)//如果不是用PostBack回來的話
             {
@@ -57,15 +64,21 @@ namespace WebApplication1
                     TextBox6.Text = dt.Rows[0]["PET_OLD"].ToString();
                     //TextBox7.Text = "";
                     TextBox8.Text = dt.Rows[0]["PET_NUM"].ToString();
-                    TextBox9.Text = dt.Rows[0]["ENTER_DATE"].ToString();
+                    //TextBox9.Text = dt.Rows[0]["ENTER_DATE"].ToString();
+                    Calendar1.SelectedDate = Convert.ToDateTime(dt.Rows[0]["ENTER_DATE"].ToString());
                     TextBox10.Text = dt.Rows[0]["PERSONALITY"].ToString();
                     TextBox11.Text = dt.Rows[0]["LIGATION"].ToString();
                     TextBox12.Text = dt.Rows[0]["VACCINE"].ToString();
                     TextBox13.Text = dt.Rows[0]["DEWORMING"].ToString();
-                    TextBox2.Text = dt.Rows[0]["LEAVE_DATE"].ToString();
-                    TextBox14.Text = dt.Rows[0]["ADOPT"].ToString();
+                    if(!string.IsNullOrWhiteSpace(dt.Rows[0]["LEAVE_DATE"].ToString()))
+                    {
+                        Calendar2.SelectedDate = Convert.ToDateTime(dt.Rows[0]["LEAVE_DATE"].ToString());
+                    }
+                    DropDownList1.SelectedValue = dt.Rows[0]["ADOPT"].ToString();
+                    Image1.ImageUrl = "Pic2/" + dt.Rows[0]["PET_IMG"].ToString().Trim();
+                    HiddenField1.Value = dt.Rows[0]["PET_IMG"].ToString();
 
-                    if(sType == "0")
+                    if (sType == "0")
                     {
                         RadioButton3.Checked = true;
                     }
@@ -105,7 +118,7 @@ namespace WebApplication1
             TextBox6.ReadOnly = false;
             //TextBox7.ReadOnly = false;
             TextBox8.ReadOnly = false;
-            TextBox9.ReadOnly = false;
+            //TextBox9.ReadOnly = false;
             TextBox10.ReadOnly = false;
             TextBox11.ReadOnly = false;
             TextBox12.ReadOnly = false;
@@ -126,7 +139,7 @@ namespace WebApplication1
             TextBox6.Text = "";
             //TextBox7.Text = "";
             TextBox8.Text = "";
-            TextBox9.Text = "";
+            //TextBox9.Text = "";
             TextBox10.Text = "";
             TextBox11.Text = "";
             TextBox12.Text = "";
@@ -147,7 +160,7 @@ namespace WebApplication1
             TextBox6.ReadOnly = true;
             //TextBox7.ReadOnly = true;
             TextBox8.ReadOnly = true;
-            TextBox9.ReadOnly = true;
+            //TextBox9.ReadOnly = true;
             TextBox10.ReadOnly = true;
             TextBox11.ReadOnly = true;
             TextBox12.ReadOnly = true;
@@ -156,6 +169,28 @@ namespace WebApplication1
             Button1.Visible = true;
             Button2.Visible = true;
             Button4.Visible = false;
+        }
+
+        private void SetDrList()
+        {
+            string sql = "Select ID,ADOPTERS_NAME from ADOPTERS";
+            DataTable dt = new DataTable();
+
+            SqlConnection sqlconn = new SqlConnection();
+            SqlCommand sqlCmd = new SqlCommand(sql, sqlconn);
+
+            sqlconn.ConnectionString = strCon;
+            sqlconn.Open();
+
+            SqlDataReader Sqldr = sqlCmd.ExecuteReader();
+            dt.Load(Sqldr);
+            Sqldr.Close();
+
+            DropDownList1.DataValueField = "ID";
+            DropDownList1.DataTextField = "ADOPTERS_NAME";
+            DropDownList1.DataSource = dt;
+            DropDownList1.DataBind();
+            
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -193,14 +228,14 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@PET_COLOR", TextBox5.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_OLD", TextBox6.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_NUM", TextBox8.Text);
-                sqlCmd.Parameters.AddWithValue("@ENTER_DATE", TextBox9.Text);
+                sqlCmd.Parameters.AddWithValue("@ENTER_DATE", Calendar1.SelectedDate.ToString("yyyy/MM/dd"));
                 sqlCmd.Parameters.AddWithValue("@PERSONALITY", TextBox10.Text);
                 sqlCmd.Parameters.AddWithValue("@LIGATION", TextBox11.Text);
                 sqlCmd.Parameters.AddWithValue("@VACCINE", TextBox12.Text);
                 sqlCmd.Parameters.AddWithValue("@DEWORMING", TextBox13.Text);
-                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", TextBox2.Text);
+                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", Calendar2.SelectedDate.ToString("yyyy/MM/dd"));
                 sqlCmd.Parameters.AddWithValue("@IS_ADOPT", iAdopt);
-                sqlCmd.Parameters.AddWithValue("@ADOPT", TextBox14.Text);
+                sqlCmd.Parameters.AddWithValue("@ADOPT", DropDownList1.SelectedValue.ToString());
                 sqlCmd.Parameters.AddWithValue("@PET_IMG", HiddenField1.Value);
 
                 //PET_TYPE, PET_VARIETY, PET_SEX, PET_WEIGHT,PET_COLOR,PET_OLD,PET_NUM,ENTER_DATE,PERSONALITY,LIGATION,VACCINE,DEWORMING, LEAVE_DATE,IS_ADOPT,ADOPT,CREATE_DATE
@@ -245,14 +280,14 @@ namespace WebApplication1
                 sqlCmd.Parameters.AddWithValue("@PET_COLOR", TextBox5.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_OLD", TextBox6.Text);
                 sqlCmd.Parameters.AddWithValue("@PET_NUM", TextBox8.Text);
-                sqlCmd.Parameters.AddWithValue("@ENTER_DATE", TextBox9.Text);
+                sqlCmd.Parameters.AddWithValue("@ENTER_DATE", Calendar1.SelectedDate.ToString("yyyy/MM/dd"));
                 sqlCmd.Parameters.AddWithValue("@PERSONALITY", TextBox10.Text);
                 sqlCmd.Parameters.AddWithValue("@LIGATION", TextBox11.Text);
                 sqlCmd.Parameters.AddWithValue("@VACCINE", TextBox12.Text);
                 sqlCmd.Parameters.AddWithValue("@DEWORMING", TextBox13.Text);
-                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", TextBox2.Text);
+                sqlCmd.Parameters.AddWithValue("@LEAVE_DATE", Calendar2.SelectedDate.ToString("yyyy/MM/dd"));
                 sqlCmd.Parameters.AddWithValue("@IS_ADOPT", iAdopt);
-                sqlCmd.Parameters.AddWithValue("@ADOPT", TextBox14.Text);
+                sqlCmd.Parameters.AddWithValue("@ADOPT", DropDownList1.SelectedValue.ToString());
                 sqlCmd.Parameters.AddWithValue("@PET_IMG", HiddenField1.Value);
                 sqlCmd.Parameters.AddWithValue("@ID", sID);
 

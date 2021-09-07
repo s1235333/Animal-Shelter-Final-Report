@@ -62,6 +62,8 @@ namespace WebApplication1
                     TextBox4.Text = dt.Rows[0]["ADOPTERS_ADDR"].ToString();
                     TextBox6.Text = dt.Rows[0]["ADOPTERS_HOME"].ToString();
                     //TextBox7.Text = dt.Rows[0]["ADOPTERS_EXP"].ToString();
+                    Image1.ImageUrl = "Pic/" + dt.Rows[0]["ADOPTERS_IMG"].ToString();
+                    HiddenField1.Value = dt.Rows[0]["ADOPTERS_IMG"].ToString();
                     if (dt.Rows[0]["ADOPTERS_EXP"].ToString() == "0")
                     {
                         //sSEX = "男";
@@ -139,7 +141,7 @@ namespace WebApplication1
         {
             if (sType == "A")
             {
-                string strIns = @"Insert into ADOPTERS(ADOPTERS_NAME, ADOPTERS_SEX, ADOPTERS_TEL, ADOPTERS_MAIL, ADOPTERS_ADDR, ADOPTERS_HOME, ADOPTERS_EXP, ADOPTERS_INCOM, ADOPTERS_IMG CREATE_DATE) values(@ADOPTERS_NAME, @ADOPTERS_SEX, @ADOPTERS_TEL, @ADOPTERS_MAIL, @ADOPTERS_ADDR, @ADOPTERS_HOME, @ADOPTERS_EXP, @ADOPTERS_INCOM, @ADOPTERS_IMG, getdate())";
+                string strIns = @"Insert into ADOPTERS(ADOPTERS_NAME, ADOPTERS_SEX, ADOPTERS_TEL, ADOPTERS_MAIL, ADOPTERS_ADDR, ADOPTERS_HOME, ADOPTERS_EXP, ADOPTERS_INCOM, ADOPTERS_IMG, CREATE_DATE) values(@ADOPTERS_NAME, @ADOPTERS_SEX, @ADOPTERS_TEL, @ADOPTERS_MAIL, @ADOPTERS_ADDR, @ADOPTERS_HOME, @ADOPTERS_EXP, @ADOPTERS_INCOM, @ADOPTERS_IMG, getdate())";
                 SqlConnection sqlconn = new SqlConnection();
                 SqlCommand sqlCmd = new SqlCommand(strIns, sqlconn);
                 sqlconn.ConnectionString = strCon;

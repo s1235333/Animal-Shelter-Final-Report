@@ -9,14 +9,23 @@
     <div class="container" style="height:100vh; background-color:#f8f0cc;">
         
         <div style="margin:auto auto; width:1125px;">
-                <div class="row" style="width:250px; margin-left:60px;">
+                <div class="row" style="width:600px; margin-left:60px;">
                     <div style="width:100px; float:left;"><asp:Button ID="Button1" runat="server" Text="新增" CssClass="btn btn-primary" OnClick="Button1_Click" /></div>
-                    <div style="width:100px; float:left;"><asp:Button ID="Button2" runat="server" Text="已領養" CssClass="btn btn-primary" OnClick="Button2_Click" /></div>
+                    <div style="width:150px; float:left;"><asp:Button ID="Button2" runat="server" Text="已領養" CssClass="btn btn-primary" OnClick="Button2_Click" /></div>
+                    <div style="width:300px; float:left;"><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><asp:Button ID="Button3" runat="server" Text="搜尋" CssClass="btn btn-primary" OnClick="Button3_Click" /></div>
                 </div>
-            
+
                 <%
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
-                    string sql = "Select * From PET_SIAZE where IS_ADOPT = 1";
+                    string sql = "Select * From PET_SIAZE where IS_ADOPT = 1 ";
+                    string sWhere = string.Empty;
+                    string sText = Request.QueryString["Text"];
+                    if(!string.IsNullOrWhiteSpace(sText))
+                    {
+                        sWhere += "And (PET_VARIETY like '%" + sText + "%' OR PERSONALITY like '%" + sText + "%')";
+                    }
+
+                    sql = sql + sWhere;
                     DataTable dt = new DataTable();
                     SqlConnection sqlconn = new SqlConnection();
                     SqlCommand sqlCmd = new SqlCommand(sql, sqlconn);
@@ -59,9 +68,9 @@
                             string s = "Pet_Detail.aspx?ID=" + sID + "&Type=E";
                            
                             string sHtml = "<div style='width:280px;border:solid 1px black; float:left; margin:20px 0px 0px 60px;'>";
-                            sHtml += "<div style='width:160px; margin:auto auto;'>";
+                            sHtml += "<div style='width:240px; margin:auto auto;'>";
                             sHtml += "<a href='" + s + "'>";
-                            sHtml += "<img src='Pic2/" + sIMG + "' />";
+                            sHtml += "<img src='Pic2/" + sIMG + "' style='width:240px;height:180px;'/>";
                             sHtml += "</a>";
                             sHtml += "</div>";
                             sHtml += "<div>";

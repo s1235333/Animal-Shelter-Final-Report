@@ -17,7 +17,7 @@ namespace WebApplication1
         {
             
 
-            string sql = "Select * from PET_SIAZE where DATEDIFF(month,LEAVE_DATE, getdate()) >= 6 AND IS_ADOPT = 1 AND LEAVE_DATE <> ''";
+            string sql = "Select * from PET_SIAZE where DATEDIFF(month,LEAVE_DATE, getdate()) >= 6 AND IS_ADOPT = 0 AND LEAVE_DATE <> ''";
             DataTable dt = new DataTable();
 
             SqlConnection sqlconn = new SqlConnection();
