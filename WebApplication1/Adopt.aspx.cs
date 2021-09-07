@@ -18,5 +18,10 @@ namespace WebApplication1
         {
             Server.Transfer("Adopt_Detail.aspx?Type=A");
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Adopt.aspx?Text=" + TextBox1.Text);
+        }
     }
 }
