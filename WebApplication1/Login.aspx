@@ -11,8 +11,8 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head>
-<body>
-    <form id="form1" runat="server" class="container">
+<body style="background-color:#f8f0cc;">
+    <form id="form1" runat="server" class="container" style="background-color:#f8f0cc;">
         <div style="height:100vh;background-color:#f8f0cc;">
             <div style="width:1280px; height:708px; margin:auto; background-image:url(Image/01.jpg)">
                 <div style="padding-top:480px; padding-left:220px;">

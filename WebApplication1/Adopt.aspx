@@ -54,9 +54,9 @@
                             string s = "Adopt_Detail.aspx?ID=" + sID + "&Type=E";
                             
                             string sHtml = "<div style='width:280px;border:solid 1px black; float:left; margin:20px 0px 0px 60px;'>";
-                            sHtml += "<div style='width:160px; margin:auto auto;'>";
+                            sHtml += "<div style='width:240px; margin:auto auto;'>";
                             sHtml += "<a href='" + s + "'>";
-                            sHtml += "<img src='Image/" + sIMG + "' />";
+                            sHtml += "<img src='Pic/" + sIMG + "' style='width:240px;height:180px;'/>";
                             sHtml += "</a>";
                             sHtml += "</div>";
                             sHtml += "<div>";

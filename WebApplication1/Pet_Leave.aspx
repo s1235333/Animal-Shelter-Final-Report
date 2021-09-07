@@ -8,6 +8,12 @@
     <div class="container" style="height:100vh; background-color:#f8f0cc;">
         
         <div style="margin:auto auto; width:1125px;">
+             <div class="row" style="width:500px; margin-left:60px;">
+                <div style="width:100px; float:left;">
+                    <asp:Button ID="Button1" runat="server" Text="發送MAIL" CssClass="btn btn-primary" OnClick="Button1_Click1" />
+
+                </div>
+            </div>
                 <%
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
                     string sql = "Select * From PET_SIAZE where IS_ADOPT = 0";

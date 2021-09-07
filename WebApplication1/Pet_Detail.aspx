@@ -9,7 +9,7 @@
                 <div>
                     <%--<div style="margin:auto auto; width:100px;"><asp:Label ID="Label1" runat="server" Text="002"></asp:Label></div>--%>
                     <div style="margin:auto auto; width:200px;">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="Image/03.jpg" Width="200px" Height="150" />
+                        <asp:Image ID="Image1" runat="server" ImageUrl="" Width="200px" Height="150" />
 
                     </div>
                 </div>
