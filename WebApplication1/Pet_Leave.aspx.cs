@@ -30,14 +30,7 @@ namespace WebApplication1
             //前面是發信email後面是顯示的名稱
             mail.From = new MailAddress("chaly904243@gmail.com", "信件名稱");
 
-            //收信者email
-            mail.To.Add("chaly904243@gmail.com");
-
-            //設定優先權
-            mail.Priority = MailPriority.Normal;
-
-            //標題
-            mail.Subject = "測試";
+            
 
             string sql = "select a.*, b.ID from PET_SIAZE a inner join ADOPTERS b on a.ADOPT = b.ID where a.IS_ADOPT = 0 AND a.LEAVE_DATE <> ''";
             DataTable dt = new DataTable();
@@ -52,11 +45,22 @@ namespace WebApplication1
             dt.Load(Sqldr);
             Sqldr.Close();
 
+            //收信者email
             string s = string.Empty;
-            for(int i = 0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 s += "編號：" + dt.Rows[0]["PET_NUM"].ToString() + "已離所半年。";
+                mail.To.Add(dt.Rows[i]["ADOPTERS_MAIL"].ToString());
             }
+            mail.To.Add("chaly904243@gmail.com");
+
+            //設定優先權
+            mail.Priority = MailPriority.Normal;
+
+            //標題
+            mail.Subject = "測試";
+
+            
             //內容
             mail.Body = "<h1>" + s + "</h1>";
 
