@@ -5,6 +5,21 @@
 <%@ Import namespace="System.Data"%>
 <%@ Import namespace="System.Configuration"%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <script type="text/javascript">
+        $(function () {
+            /* initiate the plugin */
+            $("div.holder").jPages({
+                containerID: "itemContainer",
+                perPage: 6,
+                startPage: 1,
+                startRange: 1,
+                midRange: 3,
+                endRange: 1
+            });
+        });
+        </script>
+
+
     <div class="container" style="height:100vh; background-color:#f8f0cc;">
        
         <div style="margin:auto auto; width:1125px; ">
@@ -12,6 +27,10 @@
                 <div style="width:100px; float:left;"><asp:Button ID="Button1" runat="server" Text="新增" CssClass="btn btn-primary" OnClick="Button1_Click"/></div>
                 <div style="width:300px; float:left;"><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><asp:Button ID="Button2" runat="server" Text="查詢" CssClass="btn btn-primary" OnClick="Button2_Click" /></div>
             </div>
+            <div>
+                <div class="holder"></div>
+            </div>
+            <div id="itemContainer" style="margin-right:30px;">
             <%
                     
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
@@ -70,7 +89,8 @@
                         }
                     }
                 %>
-            
+                </div>
+                
         </div>
     </div>
 </asp:Content>

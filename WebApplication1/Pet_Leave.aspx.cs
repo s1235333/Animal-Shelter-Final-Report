@@ -26,13 +26,11 @@ namespace WebApplication1
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-            MailMessage mail = new MailMessage();
-            //前面是發信email後面是顯示的名稱
-            mail.From = new MailAddress("chaly904243@gmail.com", "信件名稱");
 
             
 
-            string sql = "select a.*, b.ID, b.ADOPTERS_MAIL from PET_SIAZE a inner join ADOPTERS b on a.ADOPT = b.ID where a.IS_ADOPT = 0 AND a.LEAVE_DATE <> '' AND DATEDIFF(month,LEAVE_DATE, getdate()) >= 6";
+
+            string sql = "select a.*, b.ID as ID_2, b.ADOPTERS_MAIL from PET_SIAZE a inner join ADOPTERS b on a.ADOPT = b.ID where a.IS_ADOPT = 0 AND a.LEAVE_DATE <> '' AND DATEDIFF(month,LEAVE_DATE, getdate()) >= 6 AND IS_MAIL IS NULL";
             DataTable dt = new DataTable();
 
             SqlConnection sqlconn = new SqlConnection();
@@ -49,43 +47,66 @@ namespace WebApplication1
             string s = string.Empty;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                s += "編號：" + dt.Rows[0]["PET_NUM"].ToString() + "已離所半年。";
-                mail.To.Add(dt.Rows[i]["ADOPTERS_MAIL"].ToString());
+                MailMessage mail = new MailMessage();
+                //前面是發信email後面是顯示的名稱
+                mail.From = new MailAddress("s1235333@gmail.com", "信件名稱");
+
+                s += "親愛的毛爸媽,這裡是Wee動物之家," + "編號：" + dt.Rows[i]["PET_NUM"].ToString() + "已離所半年,本月敝公司員工會電訪了解毛小孩狀況,若有打擾之處,敬請見諒!" + "。";
+                UpdateMail(dt.Rows[i]["ID_2"].ToString());
+                string ss = dt.Rows[i]["ADOPTERS_MAIL"].ToString();
+                mail.To.Add(ss);
+                mail.To.Add("s1235333@gmail.com");
+
+
+                //設定優先權
+                mail.Priority = MailPriority.Normal;
+
+                //標題
+                mail.Subject = "<Wee動物之家>領養半年追蹤提醒";
+
+
+                //內容
+                mail.Body = "<h1>" + s + "</h1>";
+
+                //內容使用html
+                mail.IsBodyHtml = true;
+
+                //設定gmail的smtp (這是google的)
+                SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
+
+                //gmail的帳號密碼
+                MySmtp.Credentials = new System.Net.NetworkCredential("s1235333@gmail.com","love92025");
+
+                //開啟ssl
+                MySmtp.EnableSsl = true;
+
+                //發送郵件
+                MySmtp.Send(mail);
+
+                //放掉宣告出來的MySmtp
+                MySmtp = null;
+
+                //放掉宣告出來的mail
+                mail.Dispose();
             }
-            mail.To.Add("chaly904243@gmail.com");
-
-            //設定優先權
-            mail.Priority = MailPriority.Normal;
-
-            //標題
-            mail.Subject = "測試";
-
-            
-            //內容
-            mail.Body = "<h1>" + s + "</h1>";
-
-            //內容使用html
-            mail.IsBodyHtml = true;
-
-            //設定gmail的smtp (這是google的)
-            SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
-
-            //您在gmail的帳號密碼
-            MySmtp.Credentials = new System.Net.NetworkCredential("chaly904243@gmail.com", "abcdef731017");
-
-            //開啟ssl
-            MySmtp.EnableSsl = true;
-
-            //發送郵件
-            MySmtp.Send(mail);
-
-            //放掉宣告出來的MySmtp
-            MySmtp = null;
-
-            //放掉宣告出來的mail
-            mail.Dispose();
 
             Response.Write("<script language='javascript'>alert('MAIL已寄送。')</script>");
+        }
+
+        private void UpdateMail(string sID) //已寄過mail的領養者
+        {
+            string strUp = @"Update ADOPTERS SET IS_MAIL = 'Y' where ID = @ID";
+            SqlConnection sqlconn = new SqlConnection();
+            SqlCommand sqlCmd = new SqlCommand(strUp, sqlconn);
+            sqlconn.ConnectionString = strCon;
+            sqlconn.Open();
+
+            sqlCmd.Parameters.AddWithValue("@ID", sID);
+
+            sqlCmd.ExecuteNonQuery();
+            sqlCmd.Cancel();
+            sqlconn.Close();
+            sqlconn.Dispose();
         }
     }
 }

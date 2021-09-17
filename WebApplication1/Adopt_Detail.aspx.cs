@@ -127,7 +127,7 @@ namespace WebApplication1
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            TextBox1.ReadOnly = true;
+            TextBox1.ReadOnly = false;
             //TextBox2.ReadOnly = true;
             TextBox3.ReadOnly = false;
             TextBox4.ReadOnly = false;

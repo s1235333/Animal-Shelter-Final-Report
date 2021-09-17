@@ -13,7 +13,16 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["UserID"] == null)
+            {
+                Server.Transfer("Login.aspx");
+            }
+        }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Session["UserID"] = null;
+            Server.Transfer("Login.aspx");
         }
     }
 }

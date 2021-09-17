@@ -66,6 +66,7 @@ namespace WebApplication1
                     TextBox8.Text = dt.Rows[0]["PET_NUM"].ToString();
                     //TextBox9.Text = dt.Rows[0]["ENTER_DATE"].ToString();
                     Calendar1.SelectedDate = Convert.ToDateTime(dt.Rows[0]["ENTER_DATE"].ToString());
+                    TextBox2.Text = dt.Rows[0]["ENTER_DATE"].ToString();
                     TextBox10.Text = dt.Rows[0]["PERSONALITY"].ToString();
                     TextBox11.Text = dt.Rows[0]["LIGATION"].ToString();
                     TextBox12.Text = dt.Rows[0]["VACCINE"].ToString();
@@ -73,6 +74,7 @@ namespace WebApplication1
                     if(!string.IsNullOrWhiteSpace(dt.Rows[0]["LEAVE_DATE"].ToString()))
                     {
                         Calendar2.SelectedDate = Convert.ToDateTime(dt.Rows[0]["LEAVE_DATE"].ToString());
+                        TextBox4.Text = dt.Rows[0]["LEAVE_DATE"].ToString();
                     }
                     DropDownList1.SelectedValue = dt.Rows[0]["ADOPT"].ToString();
                     Image1.ImageUrl = "Pic2/" + dt.Rows[0]["PET_IMG"].ToString().Trim();

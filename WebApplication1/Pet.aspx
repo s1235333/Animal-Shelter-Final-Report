@@ -5,6 +5,19 @@
 <%@ Import namespace="System.Data"%>
 <%@ Import namespace="System.Configuration"%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            /* initiate the plugin */
+            $("div.holder").jPages({
+                containerID: "itemContainer",
+                perPage: 6,
+                startPage: 1,
+                startRange: 1,
+                midRange: 3,
+                endRange: 1
+            });
+        });
+    </script>
 
     <div class="container" style="height:100vh; background-color:#f8f0cc;">
         
@@ -14,7 +27,10 @@
                     <div style="width:150px; float:left;"><asp:Button ID="Button2" runat="server" Text="已領養" CssClass="btn btn-primary" OnClick="Button2_Click" /></div>
                     <div style="width:300px; float:left;"><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><asp:Button ID="Button3" runat="server" Text="搜尋" CssClass="btn btn-primary" OnClick="Button3_Click" /></div>
                 </div>
-
+                <div>
+                    <div class="holder"></div>
+                </div>
+                <div id="itemContainer" style="margin-right:30px;">
                 <%
                     string strCon = ConfigurationManager.ConnectionStrings["Animal_HouseConnectionString"].ConnectionString;
                     string sql = "Select * From PET_SIAZE where IS_ADOPT = 1 ";
@@ -22,7 +38,7 @@
                     string sText = Request.QueryString["Text"];
                     if(!string.IsNullOrWhiteSpace(sText))
                     {
-                        sWhere += "And (PET_VARIETY like '%" + sText + "%' OR PERSONALITY like '%" + sText + "%' OR PET_WEIGHT = " + sText + " OR PET_COLOR = '%" + sText + "%' OR PET_NUM = '%" + sText + "%')";
+                        sWhere += "And (PET_VARIETY like '%" + sText + "%' OR PERSONALITY like '%" + sText + "%' OR Convert(varchar,PET_WEIGHT) like '%" + sText + "%' OR PET_COLOR like '%" + sText + "%' OR PET_NUM like '%" + sText + "%')";
                     }
 
                     sql = sql + sWhere;
@@ -85,7 +101,11 @@
                     }
                 %>
 
-            
+                </div>
+
+                
+
+                
         </div>
     </div>
 </asp:Content>

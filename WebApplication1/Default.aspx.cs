@@ -35,7 +35,7 @@ namespace WebApplication1
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    s += "編號：" + dt.Rows[i]["PET_NUM"].ToString() + "已離所半年。";
+                    s += "編號：" + dt.Rows[i]["PET_NUM"].ToString() + "已離所半年,請致電給領養者追蹤提醒施打疫苗。";
                 }
             }
             string sText = "<MARQUEE>" + s + "</MARQUEE>";

@@ -8,8 +8,13 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/jPages.js"></script>
+
     <%--<script src="js/bootstrap.min.js"></script>--%>
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/jPages.css">
+    <link rel="stylesheet" href="css/animate.css">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
    
@@ -17,9 +22,9 @@
 <body style="margin:0px;">
     <form id="form1" runat="server" style="background-color:#f8f0cc;">
         <div style="background-color:#f8f0cc; height:100px;">
-            <div style="margin:0px 0px 0px 40px; width:100px; padding-top:50px;" id="div01" runat="server">
+            <div style="margin:0px 0px 0px 40px; width:250px; padding-top:50px; float:left;" id="div01" runat="server">
                 <%--<asp:Label ID="Label1" runat="server" Text="測試測試"></asp:Label>--%>
-                <div class="dropdown">
+                <div class="dropdown" style="width:100px;float:left;">
                   <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="Image/09.jpg" />
                   </a>
@@ -29,7 +34,10 @@
                     <li><a class="dropdown-item" href="User.aspx">員工管理</a></li>
                   </ul>
                 </div>
-
+                
+            </div>
+            <div style="width:100px;float:right;margin:40px 0px 0px 20px;">
+                <asp:Button ID="Button1" runat="server" Text="登出" CssClass="btn btn-primary" OnClick="Button1_Click"/>
             </div>
         </div>
         <div style="background-color:#f8f0cc;">

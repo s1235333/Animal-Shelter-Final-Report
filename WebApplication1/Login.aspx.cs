@@ -33,7 +33,7 @@ namespace WebApplication1
             dt.Load(Sqldr);
             Sqldr.Close();
 
-            if(dt.Rows.Count > 0)
+            if(dt.Rows.Count == 0 )
             {
                 Response.Write("<script language='javascript'>alert('無此帳號，請重新輸入。')</script>");
             }
@@ -44,6 +44,7 @@ namespace WebApplication1
             }
             else
             {
+                Session["UserID"] = TextBox1.Text;
                 Server.Transfer("Default.aspx");
             }
 
